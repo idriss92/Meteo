@@ -1,0 +1,53 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="${relativePackage}.${activityClass}">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="Mes Favoris"/>
+        <Button 
+            android:id="@+id/add_favo_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Ajouter"/>
+    </LinearLayout>
+    
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="4dp"
+        android:background="#c0c0c0"/>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:id="@+id/lv_mes_favoris">
+        
+		<ListView
+		    android:id="@+id/list_item"
+		    android:layout_width="0dp"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="2"
+		    android:cacheColorHint="@android:color/transparent"
+		    android:divider="#000000"
+		    android:clickable="true"
+		    android:descendantFocusability="blocksDescendants"
+		    android:dividerHeight="2dp"
+		    android:listSelector="@android:color/transparent" >
+
+		</ListView>
+    </LinearLayout>
+
+</LinearLayout>
