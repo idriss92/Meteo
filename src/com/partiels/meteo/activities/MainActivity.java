@@ -94,7 +94,7 @@ public class MainActivity extends Activity {
     		ListVille();
     		return true;
     		case  R.id.action_refresh :
-    			this.RefreshData();
+    			//this.RefreshData();
     		return true;
     		
     	default:
@@ -135,6 +135,7 @@ public class MainActivity extends Activity {
     	NetworkInfo actN = conn.getActiveNetworkInfo();
     	return actN != null && actN.isConnected();
     }
+    
     
     //charger ville
     public void loadVille(String city){
@@ -295,11 +296,22 @@ else         if(weah .equals( "11d")){
                }
 	}
 
-	public void RefreshData(){
+	public void RefreshData(View view){
 		new RequestTask().execute("http://www.openweathermap.org/data/2.5/weather?q=" + meteo.getName() + "&units=metric&mode=xml");
 	
 	}
 
+	public void Ville(View view){
+		Intent i = new Intent(this, ListeVilleNonFavoris.class);
+		startActivityForResult(i,1);
+	}
+	
+	public void Favoris(View view){
+    	Intent i = new Intent(this, ListVille.class);
+    	startActivityForResult(i,2);
+	}
+	
+	
 }
         
     

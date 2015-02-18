@@ -28,11 +28,9 @@
             </intent-filter>
         </activity>
         <activity android:name="com.partiels.meteo.activities.AjouterVille"></activity>
-        <activity android:name="com.partiels.meteo.activities.ListVille"/>
-        <activity android:name=".activities.SearchCityWeather"/>
-        <activity android:name=".activities.SpecialActivity"/>
-        <activity android:name=".activities.MyFavoriteWeather"/>
-        <activity android:name=".activities.MyLocalization"/>       
+        <activity android:name="com.partiels.meteo.activities.SupprimerVille"></activity>
+        <activity android:name="com.partiels.meteo.activities.ListeVilleNonFavoris"></activity>        
+        <activity android:name="com.partiels.meteo.activities.ListVille"/>    
     </application>
 
 </manifest>

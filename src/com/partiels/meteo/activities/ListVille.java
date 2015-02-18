@@ -28,7 +28,7 @@ public class ListVille extends ListActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liste_villes);
-
+        System.out.print("Fuck");
         listeVille = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1);
         setListAdapter(listeVille);
         restoreVille();
@@ -58,7 +58,7 @@ public class ListVille extends ListActivity{
 	  @Override
 	    public boolean onCreateOptionsMenu(Menu menu) {
 	        // Inflate the menu; this adds items to the action bar if it is present.
-	        getMenuInflater().inflate(R.menu.liste_villes_actions, menu);
+	        //getMenuInflater().inflate(R.menu.liste_villes_actions, menu);
 	        return true;
 	    }
 

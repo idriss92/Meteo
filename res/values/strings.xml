@@ -38,8 +38,12 @@
         <item>Item 6</item>
     </string-array>
     
-    <string name="drawer_open">Open navigation drawer</string>
-    <string name="drawer_close">Close navigation drawer</string>
+	<string name="supprimer">Supprimer</string>
+	<string name="ajouter">Ajouter</string>
+	
+	<string name="villes">Villes</string>
+	<string name="favoris">Favoris</string>
+	<string name="actualiser">Actualiser</string>
     
     <string name="addCity">Ajouter une ville en favori</string>
     <string name="save">Enregistrer</string>
@@ -47,12 +51,12 @@
     
     <string name="icon">weathear_icon</string>
     <string name="city">Ville</string>
-    <string name="degrees">Degrés</string>
+    <string name="degrees">Degrés en °C</string>
     <string name="humidity">Humidité</string>
     <string name="wind">Vent</string>
     <string name="choose_city">ville : </string>
     
-    <string name="date">derniere modification</string>
+    <string name="date">Mise à jour</string>
     
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
