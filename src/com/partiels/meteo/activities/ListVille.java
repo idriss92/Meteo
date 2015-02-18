@@ -42,6 +42,7 @@ public class ListVille extends ListActivity{
 	public void restoreVille(){
 		SharedPreferences preferences = this.getSharedPreferences("meteo", 0);
 		Map<String, String> map = (Map<String, String>) preferences.getAll();
+		this.listeVille.clear();
 		for (String city : map.values()) {
 			this.listeVille.add(city);
 		}
@@ -68,16 +69,8 @@ public class ListVille extends ListActivity{
 	        // automatically handle clicks on the Home/Up button, so long
 	        // as you specify a parent activity in AndroidManifest.xml.
 	    	
-	    	switch(item.getItemId())
-	    	{
+	    	return false;
 	    	
-	    	case R.id.action_new :
-	    		AjouterVille();
-	    		return true;
-	    		
-	    	default:
-	    		return super.onOptionsItemSelected(item);
-	    	}
 	    }
 	    
 	    @Override
@@ -96,10 +89,15 @@ public class ListVille extends ListActivity{
 	     * Launching new Search
 	     */
 	    
-	    private void AjouterVille(){
+	    public void AjouterVille(View view){
 	    	Log.d("fuck", "error");
 	    	Intent i = new Intent(ListVille.this,AjouterVille.class);
 	    	startActivityForResult(i, 1);
+	    }
+	    
+	    public void SupprimerFavoris(View view){
+	    	Intent i = new Intent(ListVille.this,SupprimerVille.class);
+	    	startActivityForResult(i, 2);
 	    }
 	    
 	    @Override
@@ -113,6 +111,9 @@ public class ListVille extends ListActivity{
 	    			this.saveVille(city);
 	    			Toast.makeText(getApplicationContext(), city, Toast.LENGTH_LONG).show();
 	    		}
+	    	}
+	    	if(requestCode == 2){
+	    		this.restoreVille();
 	    	}
 	    }
 }

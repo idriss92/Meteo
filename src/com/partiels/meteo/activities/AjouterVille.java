@@ -41,9 +41,9 @@ public class AjouterVille extends Activity {
 	  @Override
 	    public boolean onCreateOptionsMenu(Menu menu) {
 	        // Inflate the menu; this adds items to the action bar if it is present.
-	        MenuInflater inflater = getMenuInflater();
-	        inflater.inflate(R.menu.ajouter_ville_actions, menu);
-		  	getMenuInflater().inflate(R.menu.main, menu);
+	        //MenuInflater inflater = getMenuInflater();
+	        //inflater.inflate(R.menu.ajouter_ville_actions, menu);
+		  	//getMenuInflater().inflate(R.menu.main, menu);
 	        return true;
 	    }
 	  
@@ -59,20 +59,8 @@ public class AjouterVille extends Activity {
 	        // Handle action bar item clicks here. The action bar will
 	        // automatically handle clicks on the Home/Up button, so long
 	        // as you specify a parent activity in AndroidManifest.xml.
-	        
-	    	
-	    	
-	    	switch(item.getItemId())
-	    	{
-	    	case R.id.action_view_as_list :
-	    	
-	    		return true;
-	    		
-	    	case R.id.action_search :
-	    		
-	    	default:
-	    		return super.onOptionsItemSelected(item);
-	    	}
+	        return false;
+
 	    }
 	    
 

@@ -25,6 +25,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.partiels.meteo.R;
 
@@ -40,9 +41,9 @@ public class SupprimerVille extends ListActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_supprimer_ville);
 
-		// listeVille = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1);
-	     //setListAdapter(listeVille);
-	     //liste.restoreVille();
+		 listeVille = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1);
+	     setListAdapter(listeVille);
+	     restoreVille();
 	}
 	
 	
@@ -69,12 +70,24 @@ public class SupprimerVille extends ListActivity{
 	    	// TODO Auto-generated method stub
 	    	super.onListItemClick(l, v, position, id);
 	    	String city = this.listeVille.getItem(position);
-	    	Intent intent = new Intent();
-	    	intent.removeExtra(city);
+	    	listeVille.remove(city);
+	    	
+	    	SharedPreferences shP = this.getSharedPreferences("meteo", 0);
+			SharedPreferences.Editor editor = shP.edit();
+			editor.remove(city);//.putString(city, city);
+			editor.commit();
+	    	//Intent intent = new Intent();
+	    	//intent.removeExtra(city);
 	    	//setResult(RESULT_CANCELED, intent);
 	    	//setResult(RESULT_OK, intent);
 	    	//finish();
 	    }
 	
-	
+	    public void restoreVille(){
+			SharedPreferences preferences = this.getSharedPreferences("meteo", 0);
+			Map<String, String> map = (Map<String, String>) preferences.getAll();
+			for (String city : map.values()) {
+				this.listeVille.add(city);
+			}
+		}
 }

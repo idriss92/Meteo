@@ -47,8 +47,7 @@ public class MainActivity extends Activity {
 	
 	String ville;
 	
-	public static final String MyCity = "MyFavoriteCity" ;
-	public static final String City = "cityKey"; 
+	
 	
 	public String weatherXML = null;
 	
@@ -57,6 +56,15 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        /*if(savedInstanceState != null){
+        	 String city = savedInstanceState.getString(ville);
+        	 System.out.print(city);
+        	 Log.d("Ville",city);
+        	 this.loadVille(city);
+        }
+        
+        else{*/
         ville = "Paris";
 		//new RequestTask().execute("http://www.openweathermap.org/data/2.5/weather?q=" + ville + "&units=metric&mode=xml");
 		
@@ -70,14 +78,17 @@ public class MainActivity extends Activity {
 		city.setText((CharSequence) ville);
 		image = (ImageView) findViewById(R.id.imageView1);
 		this.loadVille(ville);
+        //}
     }
+        
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return super.onCreateOptionsMenu(menu);
+        //getMenuInflater().inflate(R.menu.main, menu);
+        //return super.onCreateOptionsMenu(menu);
+    	return false;
     }
 
     @Override
@@ -85,21 +96,7 @@ public class MainActivity extends Activity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        
-    	
-    	
-    	switch(item.getItemId())
-    	{
-    	case R.id.action_view_as_list :
-    		ListVille();
-    		return true;
-    		case  R.id.action_refresh :
-    			//this.RefreshData();
-    		return true;
-    		
-    	default:
-    		return super.onOptionsItemSelected(item);
-    	}
+    	return false;
     	
     }
     
@@ -108,9 +105,9 @@ public class MainActivity extends Activity {
      * 
      */
     
-    private void ListVille(){
+    private void ListeVilles(){
     	Intent i = new Intent(this, ListVille.class);
-    	startActivityForResult(i,1);
+    	startActivity(i);
     	
     }
     
@@ -308,13 +305,15 @@ else         if(weah .equals( "11d")){
 	
 	public void Favoris(View view){
     	Intent i = new Intent(this, ListVille.class);
-    	startActivityForResult(i,2);
+    	startActivityForResult(i,1);
 	}
 	
 	
+
+
+
 }
         
-    
 
 
 
