@@ -15,8 +15,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
 import com.partiels.meteo.R;
-import com.partiels.meteo.R.layout;
-import com.partiels.meteo.R.menu;
 
 import android.app.Activity;
 import android.content.Context;
@@ -31,8 +29,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.app.ActionBar;
 import com.partiels.meteo.algo.*;
 public class MainActivity extends Activity {
 	
@@ -56,15 +52,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
-        /*if(savedInstanceState != null){
-        	 String city = savedInstanceState.getString(ville);
-        	 System.out.print(city);
-        	 Log.d("Ville",city);
-        	 this.loadVille(city);
-        }
-        
-        else{*/
+
         ville = "Paris";
 		//new RequestTask().execute("http://www.openweathermap.org/data/2.5/weather?q=" + ville + "&units=metric&mode=xml");
 		
@@ -78,7 +66,6 @@ public class MainActivity extends Activity {
 		city.setText((CharSequence) ville);
 		image = (ImageView) findViewById(R.id.imageView1);
 		this.loadVille(ville);
-        //}
     }
         
 
@@ -153,10 +140,10 @@ public class MainActivity extends Activity {
     		new RequestTask().execute("http://www.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&mode=xml");
     		}
     		else{
-    			degres.setText((CharSequence) "Not Available");
-                humidite.setText((CharSequence) "Not Available");
-                vent.setText((CharSequence) "Not Available");
-                date.setText((CharSequence) "Not Available");
+    			degres.setText((CharSequence) "Not Connected");
+                humidite.setText((CharSequence) "Not Connected");
+                vent.setText((CharSequence) "Not Connected");
+                date.setText((CharSequence) "Not Connected");
                 this.city.setText((CharSequence) city);
     		}
     	}
@@ -209,6 +196,7 @@ public class RequestTask extends AsyncTask<String, String, String>{
             vent.setText((CharSequence) wm.getWind());
             //image.setImageResource(R.drawable.cloud);
             meteo.delete();
+            
             //sauvegarde dans la bdd
             meteo.setHumidity(wm.getHumidity());
             meteo.setTemperature(wm.getDegrees());
@@ -216,14 +204,13 @@ public class RequestTask extends AsyncTask<String, String, String>{
             meteo.setWeather(wm.getWeather());
             meteo.save();
             
-            
-            System.out.println(wm.getWeather());
             SetWeather(wm.getWeather());
             date.setText((CharSequence)meteo.getDate());
         }
     }
 }
 
+	//used to set image depends on weather
 	public void SetWeather(String weah){
 		   if(weah.equals("01d")){
            	image.setImageResource(R.drawable.sund);
@@ -233,55 +220,55 @@ public class RequestTask extends AsyncTask<String, String, String>{
            	image.setImageResource(R.drawable.suncloud);
            }
 
-           else if(weah.equals("02n")){
+           	else if(weah.equals("02n")){
            	image.setImageResource(R.drawable.mooncloud);
                }
 
-       	else if(weah.equals("03d")){
+       		else if(weah.equals("03d")){
            	image.setImageResource(R.drawable.cloud);
                }
+		
+       		else if(weah.equals( "03n")){
+		           	image.setImageResource(R.drawable.cloud);
+		               }
+		
+       		else  if(weah.equals("04d")){
+		           	image.setImageResource(R.drawable.darkcloud);
+		               }
+		
+       		else  if(weah.equals("04n")){
+		           	image.setImageResource(R.drawable.darkcloud);
+		               }
+		
+       		else    if(weah.equals( "09d")){
+		           	image.setImageResource(R.drawable.rain);
+		               }
 
-   else if(weah.equals( "03n")){
-           	image.setImageResource(R.drawable.cloud);
-               }
-
-   else  if(weah.equals("04d")){
-           	image.setImageResource(R.drawable.darkcloud);
-               }
-
-   else  if(weah.equals("04n")){
-           	image.setImageResource(R.drawable.darkcloud);
-               }
-
-   else    if(weah.equals( "09d")){
+       		else       if(weah.equals( "09n")){
            	image.setImageResource(R.drawable.rain);
                }
 
-       else       if(weah.equals( "09n")){
-           	image.setImageResource(R.drawable.rain);
-               }
-
-   else       if(weah.equals( "10d")){
+       		else       if(weah.equals( "10d")){
            	image.setImageResource(R.drawable.suncloudrain);
                }
 
-else       if(weah.equals("10n")){
+       		else       if(weah.equals("10n")){
            	image.setImageResource(R.drawable.mooncloudrain);
                }
 
-else         if(weah .equals( "11d")){
+       		else         if(weah .equals( "11d")){
            	image.setImageResource(R.drawable.lightning);
                }
 
-               else          if(weah.equals( "11n")){
+       		else          if(weah.equals( "11n")){
            	image.setImageResource(R.drawable.lightning);
                }
 
-               else          if(weah .equals( "13d")){
+       		else          if(weah .equals( "13d")){
            	image.setImageResource(R.drawable.snow);
                }
 
-               else if(weah .equals( "13n")){
+       		else if(weah .equals( "13n")){
            	image.setImageResource(R.drawable.snow);
                }
        		else if(weah .equals( "50d")){
@@ -293,23 +280,24 @@ else         if(weah .equals( "11d")){
                }
 	}
 
+	//refresh our data
 	public void RefreshData(View view){
 		new RequestTask().execute("http://www.openweathermap.org/data/2.5/weather?q=" + meteo.getName() + "&units=metric&mode=xml");
-	
 	}
-
+	
+	//open activity ListeVilleNonFavoris
 	public void Ville(View view){
 		Intent i = new Intent(this, ListeVilleNonFavoris.class);
 		startActivityForResult(i,1);
 	}
 	
+	
+	//open activity ListVille
 	public void Favoris(View view){
     	Intent i = new Intent(this, ListVille.class);
     	startActivityForResult(i,1);
 	}
 	
-	
-
 
 
 }

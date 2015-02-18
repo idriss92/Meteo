@@ -19,9 +19,7 @@ public class MeteoData {
     private String temperature;
     private String weather;
     private String humidity;
-    private String pressure;
     private String speed;
-    private String direction;
     private Date date;
 
     private SQLiteDatabase database;

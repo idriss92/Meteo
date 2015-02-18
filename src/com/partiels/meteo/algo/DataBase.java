@@ -1,11 +1,10 @@
 package com.partiels.meteo.algo;
 
-import com.partiels.meteo.R;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.TextView;
+
 
 public class DataBase extends SQLiteOpenHelper {
 	

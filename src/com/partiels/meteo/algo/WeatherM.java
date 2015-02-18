@@ -10,18 +10,16 @@ import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
-import org.json.JSONObject;
+//import org.json.JSONObject;
 
 public class WeatherM {
 
-//  private String documentXML;
   private Document doc = null;
   private Element root = null;
   private DecimalFormat df;
-  private JSONObject current = null;
+  //private JSONObject current = null;
 
   public WeatherM(String xml) {
-//      documentXML = xml;
       df = new DecimalFormat ( ) ;
       df.setMaximumFractionDigits ( 2 ) ; //arrondi à 2 chiffres apres la virgules
       df.setMinimumFractionDigits ( 2 ) ;
@@ -31,8 +29,7 @@ public class WeatherM {
           SAXBuilder sb=new SAXBuilder();
           doc = sb.build(is);
           root = doc.getRootElement();
-//          affiche(doc);
-//          Log.e("Document XML WeathMatch", xml);
+          
       } catch (Exception e) {
           e.printStackTrace();
       }
@@ -40,7 +37,6 @@ public class WeatherM {
 
   public String getDegrees() {
       return "" + df.format(Double.valueOf(root.getChild("temperature").getAttributeValue("value")));
-//      return root.getText();
   }
 
   public String getHumidity() {
